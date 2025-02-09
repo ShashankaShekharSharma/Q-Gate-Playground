@@ -91,8 +91,7 @@ def plot_probability_distribution(statevector):
 
 def plot_bloch(statevector):
     try:
-        fig, ax = plt.subplots()
-        plot_bloch_multivector(statevector, ax=ax)
+        fig = plot_bloch_multivector(statevector)
         st.pyplot(fig)
     except Exception as e:
         st.error(f"Error plotting Bloch sphere: {e}")
@@ -330,10 +329,9 @@ def main():
             # Plot probability distribution
             st.plotly_chart(plot_probability_distribution(statevector))
             
-            # Plot Bloch sphere for single qubit
-            if num_qubits == 1:
-                st.subheader('Bloch Sphere Visualization')
-                plot_bloch(statevector)
+            # Plot Bloch sphere for each qubit
+            st.subheader('Bloch Sphere Visualization')
+            plot_bloch(statevector)
             
             # Display measurement probabilities
             st.subheader('Basis State Probabilities')
